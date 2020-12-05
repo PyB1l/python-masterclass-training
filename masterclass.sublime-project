@@ -1,0 +1,42 @@
+{
+	"build_systems":
+	[
+		{
+			"name": "List",
+			"shell_cmd": "ls -l"
+		},
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"/home/pav/playground/python_masterclass/venv/bin/python\" -u \"$file\""
+		},
+    {
+      "name": "black",
+      "selector": "source.python",
+      "shell_cmd": "$project_path/venv/bin/black $file"
+    },
+    {
+      "name": "isort",
+      "selector": "source.python",
+      "shell_cmd": "$project_path/venv/bin/isort $file"
+    },
+    {
+      "name": "test",
+      "shell_cmd": "$project_path/venv/bin/pytest test -vvv -s"
+    },
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"SublimeLinter.linters.flake8.python": "${project_path}/venv/bin/python",
+		"python_interpreter": "${project_path}/venv/bin/python",
+		"sublack.black_command": "${project_path}/venv/bin/black",
+		"sublack.black_on_save": true
+	}
+}
